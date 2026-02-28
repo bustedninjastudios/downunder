@@ -1,7 +1,11 @@
+class_name SceneTransition
 extends Area2D
 
+static var pending_spawn_pos: Vector2 = Vector2.ZERO
+static var pending_push_offset: Vector2 = Vector2.ZERO
+static var has_spawn_pos: bool = false
+
 @export var target_scene: String = ""
-@export var two_way: bool = true
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -14,22 +18,21 @@ func _do_transition(player: CharacterBody2D) -> void:
 	if target_scene.is_empty():
 		return
 	
-	var viewport = get_viewport()
-	if not viewport:
-		return
+	var screen_width = 1920
+	var screen_height = 960
 	
-	var screen_width = viewport.get_visible_rect().size.x
+	var exit_pos = player.global_position
+	var enter_x = abs(exit_pos.x - screen_width)
+	var enter_y = exit_pos.y
 	
-	var shape = get_node_or_null("CollisionShape2D")
-	var current_x = 0
-	if shape:
-		current_x = shape.global_position.x
-	
-	var new_x: float
-	if current_x > screen_width / 2:
-		new_x = 32
+	var push_offset := Vector2.ZERO
+	if exit_pos.x > screen_width / 2:
+		push_offset.x = 50
 	else:
-		new_x = screen_width - 32
+		push_offset.x = -50
 	
-	player.global_position = Vector2(new_x, player.global_position.y)
+	pending_spawn_pos = Vector2(enter_x, enter_y)
+	pending_push_offset = push_offset
+	has_spawn_pos = true
+	
 	get_tree().change_scene_to_file(target_scene)
