@@ -8,14 +8,22 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		transition_to_scene(body)
+		_do_transition.call_deferred(body)
 
-func transition_to_scene(player: CharacterBody2D) -> void:
+func _do_transition(player: CharacterBody2D) -> void:
 	if target_scene.is_empty():
 		return
 	
-	var screen_width = 1920
-	var current_x = global_position.x
+	var viewport = get_viewport()
+	if not viewport:
+		return
+	
+	var screen_width = viewport.get_visible_rect().size.x
+	
+	var shape = get_node_or_null("CollisionShape2D")
+	var current_x = 0
+	if shape:
+		current_x = shape.global_position.x
 	
 	var new_x: float
 	if current_x > screen_width / 2:

@@ -320,7 +320,6 @@ texture = ExtResource("4_pdvjp")
 [node name="ToArea1Left" type="Area2D" parent="Transitions" unique_id=-1662491403]
 script = ExtResource("5_transition")
 target_scene = "res://scenes/area_1.tscn"
-two_way = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/ToArea1Left" unique_id=-1662491402]
 position = Vector2(32, 480)
