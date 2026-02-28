@@ -95,9 +95,18 @@ func try_drill() -> void:
 		for x in range(-2, 2):
 			for y in range(-1, 2):
 				var target_tile = tile_pos + Vector2i(x, y)
-				if tilemap.get_cell_tile_data(target_tile):
-					tilemap.erase_cell(target_tile)
-					PlayerState.add_item("stone", 1)
+				var tile_data = tilemap.get_cell_tile_data(target_tile)
+				if tile_data:
+					var terrain = tile_data.terrain
+					var required_power = 1
+					if terrain == 1:
+						required_power = 2
+					elif terrain == 2:
+						required_power = 3
+					
+					if drill_power >= required_power:
+						tilemap.erase_cell(target_tile)
+						PlayerState.add_item("stone", 1)
 		
 		save_state()
 

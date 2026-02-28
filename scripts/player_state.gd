@@ -1,6 +1,6 @@
 extends Node
 
-var drill_power: int = 1
+var drill_power: int = 2
 var bombs: int = 3
 var money: int = 0
 var inventory: Dictionary = {}

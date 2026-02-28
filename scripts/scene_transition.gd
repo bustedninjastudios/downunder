@@ -6,6 +6,8 @@ static var pending_push_offset: Vector2 = Vector2.ZERO
 static var has_spawn_pos: bool = false
 
 @export var target_scene: String = ""
+@export var is_vertical: bool = false
+@export var vertical_direction: int = 1
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -22,14 +24,25 @@ func _do_transition(player: CharacterBody2D) -> void:
 	var screen_height = 960
 	
 	var exit_pos = player.global_position
-	var enter_x = abs(exit_pos.x - screen_width)
+	var enter_x = exit_pos.x
 	var enter_y = exit_pos.y
 	
 	var push_offset := Vector2.ZERO
-	if exit_pos.x > screen_width / 2:
-		push_offset.x = 50
+	
+	if is_vertical:
+		enter_y = vertical_direction * -50
+		push_offset.y = -vertical_direction * 50
+		if exit_pos.x > screen_width / 2:
+			push_offset.x = 50
+		else:
+			push_offset.x = -50
 	else:
-		push_offset.x = -50
+		enter_x = abs(exit_pos.x - screen_width)
+		enter_y = exit_pos.y
+		if exit_pos.x > screen_width / 2:
+			push_offset.x = 50
+		else:
+			push_offset.x = -50
 	
 	pending_spawn_pos = Vector2(enter_x, enter_y)
 	pending_push_offset = push_offset
