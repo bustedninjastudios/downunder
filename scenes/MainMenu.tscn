@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://de3m20ryutuxu" path="res://scripts/main_menu_handler.gd" id="1_2wh52"]
 [ext_resource type="LabelSettings" uid="uid://coy7ymvx1l3x8" path="res://shared/text/TitleLabel.tres" id="1_yqorp"]
 [ext_resource type="Texture2D" uid="uid://dds3sic0k7ns8" path="res://textures/misc/menubg.png" id="2_0ykhv"]
+[ext_resource type="FontFile" uid="uid://bttn72quawpnc" path="res://fonts/VT323-Regular.ttf" id="3_ow34m"]
 
 [node name="MainMenu" type="Control" unique_id=1055790087]
 layout_mode = 3
@@ -22,21 +23,24 @@ color = Color(0.3137255, 0.11764706, 0.77254903, 0.59607846)
 [node name="Label" type="Label" parent="." unique_id=1339035482]
 z_index = 1
 layout_mode = 0
-offset_left = 109.0
-offset_top = 167.0
-offset_right = 1236.0
-offset_bottom = 332.0
-text = "GAME TITLE SO WIP"
+offset_left = -2.0
+offset_top = 152.0
+offset_right = 1155.0
+offset_bottom = 317.0
+text = "DOWN UNDER"
 label_settings = ExtResource("1_yqorp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="." unique_id=1726695899]
 z_index = 1
 layout_mode = 0
-offset_left = 384.0
-offset_top = 344.0
-offset_right = 819.0
-offset_bottom = 456.0
-theme_override_font_sizes/font_size = 70
+offset_left = 360.0
+offset_top = 317.0
+offset_right = 795.0
+offset_bottom = 429.0
+theme_override_fonts/font = ExtResource("3_ow34m")
+theme_override_font_sizes/font_size = 82
 text = "PLAY"
 
 [node name="Menubg" type="Sprite2D" parent="." unique_id=2129294671]
