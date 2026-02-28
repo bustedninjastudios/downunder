@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://de3m20ryutuxu" path="res://scripts/main_menu_handler.gd" id="1_2wh52"]
 [ext_resource type="LabelSettings" uid="uid://coy7ymvx1l3x8" path="res://shared/text/TitleLabel.tres" id="1_yqorp"]
-[ext_resource type="Texture2D" uid="uid://dds3sic0k7ns8" path="res://textures/misc/menubg.png" id="2_0ykhv"]
 [ext_resource type="FontFile" uid="uid://bttn72quawpnc" path="res://fonts/VT323-Regular.ttf" id="3_ow34m"]
+[ext_resource type="Texture2D" uid="uid://b2m7jcgofahkd" path="res://textures/raw/Screenshot 2026-02-28 164708.png" id="4_ow34m"]
 
 [node name="MainMenu" type="Control" unique_id=1055790087]
 layout_mode = 3
@@ -17,11 +17,12 @@ script = ExtResource("1_2wh52")
 [node name="Label" type="Label" parent="." unique_id=1339035482]
 z_index = 1
 layout_mode = 0
-offset_left = 8.0
-offset_top = 239.0
-offset_right = 1920.0
-offset_bottom = 461.47192
-text = "DOWN UNDER"
+offset_left = 517.0
+offset_top = 180.0
+offset_right = 997.0
+offset_bottom = 280.0
+scale = Vector2(2, 2)
+text = "[DOWN UNDER]"
 label_settings = ExtResource("1_yqorp")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -30,15 +31,27 @@ vertical_alignment = 1
 z_index = 1
 layout_mode = 0
 offset_left = 740.0
-offset_top = 461.0
+offset_top = 421.0
 offset_right = 1175.0
-offset_bottom = 573.0
+offset_bottom = 533.0
 theme_override_fonts/font = ExtResource("3_ow34m")
 theme_override_font_sizes/font_size = 82
 text = "PLAY"
 
 [node name="Menubg" type="Sprite2D" parent="." unique_id=2129294671]
-visible = false
-position = Vector2(964.00006, 461.00003)
-scale = Vector2(1.6617385, 1.6843749)
-texture = ExtResource("2_0ykhv")
+position = Vector2(960.78094, 528.50006)
+scale = Vector2(1.0028338, 1.014313)
+texture = ExtResource("4_ow34m")
+
+[node name="Label" type="Label" parent="Menubg" unique_id=1690195225]
+z_index = 1
+offset_left = -905.21576
+offset_top = -330.7658
+offset_right = -425.21576
+offset_bottom = -24.765808
+scale = Vector2(0.7, 0.7)
+text = "How to play:
+WASD - move
+E - mine"
+label_settings = ExtResource("1_yqorp")
+vertical_alignment = 1
