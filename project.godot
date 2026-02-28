@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerState="*res://scripts/player_state.gd"
 InventoryUI="*res://scripts/inventory_ui.gd"
+ShopUI="*res://scripts/shop_ui.gd"
 
 [display]
 

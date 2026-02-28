@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://5qenrlkf7f3" path="res://sprites/submarine.png" id="4_aq3wa"]
 [ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene_transition.gd" id="5_transition"]
 [ext_resource type="Texture2D" uid="uid://mjmayalvcyf" path="res://sprites/base.png" id="6_aq3wa"]
+[ext_resource type="Texture2D" uid="uid://c4cdlf1ufs1y3" path="res://sprites/Kelp2.png" id="7_57x3n"]
+[ext_resource type="Texture2D" uid="uid://buhuvfhr4hktd" path="res://sprites/Kelp1.png" id="8_opast"]
+[ext_resource type="Texture2D" uid="uid://bxigr4ybln83r" path="res://sprites/Kelp3.png" id="9_c8sxc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nww3i"]
 atlas = ExtResource("2_al5oy")
@@ -355,3 +358,18 @@ texture = ExtResource("6_aq3wa")
 position = Vector2(-3.8224487, 0.9523926)
 scale = Vector2(1, 1.0000002)
 shape = SubResource("RectangleShape2D_nww3i")
+
+[node name="Kelp2" type="Sprite2D" parent="." unique_id=84206940]
+position = Vector2(1682, 369)
+scale = Vector2(4.8125, 4.8125)
+texture = ExtResource("7_57x3n")
+
+[node name="Kelp1" type="Sprite2D" parent="." unique_id=205876539]
+position = Vector2(193, 641)
+scale = Vector2(3.90625, 3.90625)
+texture = ExtResource("8_opast")
+
+[node name="Kelp3" type="Sprite2D" parent="." unique_id=1037873760]
+position = Vector2(534.00006, 622.00006)
+scale = Vector2(5.125, 5.125)
+texture = ExtResource("9_c8sxc")

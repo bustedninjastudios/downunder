@@ -26,7 +26,6 @@ func load_state() -> void:
 	money = PlayerState.money
 
 func save_state() -> void:
-	PlayerState.drill_power = drill_power
 	PlayerState.bombs = bombs
 	PlayerState.money = money
 
@@ -136,7 +135,7 @@ func try_drill() -> void:
 							ore_type = "hard_gold"
 							required_power = 3
 					
-					if drill_power >= required_power:
+					if PlayerState.drill_power >= required_power:
 						tilemap.erase_cell(target_tile)
 						PlayerState.add_item(ore_type, 1)
 		

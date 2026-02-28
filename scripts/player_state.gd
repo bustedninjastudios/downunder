@@ -12,7 +12,6 @@ func reset() -> void:
 	inventory = {}
 
 func add_item(item_name: String, amount: int) -> void:
-	print("Adding "+item_name+" x"+str(amount))
 	if inventory.has(item_name):
 		inventory[item_name] += amount
 	else:
