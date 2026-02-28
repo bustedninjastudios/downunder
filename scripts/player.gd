@@ -118,7 +118,7 @@ func try_drill() -> void:
 					elif terrain_set == 1:
 						if terrain == 0:
 							ore_type = "soft_copper"
-							required_power = 2
+							required_power = 1
 						elif terrain == 1:
 							ore_type = "soft_iron"
 							required_power = 2
