@@ -3,6 +3,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var manager = load("res://scripts/input_manager.gd").new()
+	manager.load_input_map("res://shared/input_config.cfg");
 	$StartButton.pressed.connect(on_btn_click)
 
 func on_btn_click() -> void:
