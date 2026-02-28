@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
 @export var move_speed: float = 200.0
-@export var acceleration: float = 10.0
+@export var acceleration: float = 20.0
 
 var target_velocity: Vector2 = Vector2.ZERO
+
+func _ready() -> void:
+	collision_mask = 0
 var click_target: Vector2 = Vector2.ZERO
 var is_moving_to_click: bool = false
 var is_holding: bool = false

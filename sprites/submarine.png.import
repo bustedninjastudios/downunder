@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blth88lf01lui"
-path="res://.godot/imported/metal_sheet.png-687d971bfc69a161816edb005006d0dc.ctex"
+uid="uid://5qenrlkf7f3"
+path="res://.godot/imported/submarine.png-e4548622e69772eef9645cbfc1c0f0b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/raw/metal_sheet.png"
-dest_files=["res://.godot/imported/metal_sheet.png-687d971bfc69a161816edb005006d0dc.ctex"]
+source_file="res://sprites/submarine.png"
+dest_files=["res://.godot/imported/submarine.png-e4548622e69772eef9645cbfc1c0f0b9.ctex"]
 
 [params]
 
