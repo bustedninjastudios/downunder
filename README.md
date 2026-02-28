@@ -1,3 +1,8 @@
-# downunder
+# Down Under
 
-test test
+A short 2D Motherload-inspired game.
+
+## Build Instructions
+N/A
+
+Made for Campfire 2025.
