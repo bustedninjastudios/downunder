@@ -1,0 +1,6 @@
+# WIP TITLE: 2d subnautica:
+
+## Core Idea:
+You have crash-landed on Radan-8. Upon impact with the ocean's surface, your spaceship's engines didn't close off properly and the water damaged their components. To your dismay, the reserve parts along with other parts of your ship that broke off sunk to the bottom of the underwater cave system you happen to have crash-landed over. If you wish to make it off of this strange planet, you must venture into the depths and darkness of Radan-8s underwater caves in order to repair your ship. Be wary, however, your sub might not be the only fish in the sea...
+## Gameplay progression:
+You start at the surface, the top of the first layer. Here, visibility is quite good, and there aren't many threats to watch out for. At the center is your spaceship, your hub for repairs and upgrades. Bring back ship components to repair your ship and eventually take off and leave. 
