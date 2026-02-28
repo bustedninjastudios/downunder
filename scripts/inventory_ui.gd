@@ -62,6 +62,15 @@ func _create_ui() -> void:
 		item_labels[item["name"]] = label
 
 func _process(_delta: float) -> void:
+	var tree = get_tree()
+	if not tree.current_scene:
+		return
+	
+	if tree.current_scene.name == "MainMenu":
+		panel.visible = false
+		return
+	
+	panel.visible = true
 	_update_inventory()
 
 func _update_inventory() -> void:
