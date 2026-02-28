@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://b6vf1aji6dy38"]
-
-[ext_resource type="TileSet" uid="uid://bd06rrk6frgp6" path="res://textures/metal_set.tres" id="1_errlg"]
-
-[node name="Root" type="Node2D" unique_id=1348760703]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=589332209]
-tile_set = ExtResource("1_errlg")
