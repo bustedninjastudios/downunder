@@ -97,16 +97,48 @@ func try_drill() -> void:
 				var target_tile = tile_pos + Vector2i(x, y)
 				var tile_data = tilemap.get_cell_tile_data(target_tile)
 				if tile_data:
+					var terrain_set = tile_data.terrain_set
 					var terrain = tile_data.terrain
 					var required_power = 1
-					if terrain == 1:
-						required_power = 2
-					elif terrain == 2:
-						required_power = 3
+					var ore_type = "sand"
+					
+					if terrain_set == 0:
+						if terrain == 0:
+							ore_type = "sand"
+							required_power = 1
+						elif terrain == 1:
+							ore_type = "soft_rock"
+							required_power = 2
+						elif terrain == 2:
+							ore_type = "hard_rock"
+							required_power = 3
+						elif terrain == 3:
+							ore_type = "ultra_hard_rock"
+							required_power = 4
+					elif terrain_set == 1:
+						if terrain == 0:
+							ore_type = "soft_copper"
+							required_power = 2
+						elif terrain == 1:
+							ore_type = "soft_iron"
+							required_power = 2
+						elif terrain == 2:
+							ore_type = "soft_gold"
+							required_power = 2
+					elif terrain_set == 2:
+						if terrain == 0:
+							ore_type = "hard_copper"
+							required_power = 3
+						elif terrain == 1:
+							ore_type = "hard_iron"
+							required_power = 3
+						elif terrain == 2:
+							ore_type = "hard_gold"
+							required_power = 3
 					
 					if drill_power >= required_power:
 						tilemap.erase_cell(target_tile)
-						PlayerState.add_item("stone", 1)
+						PlayerState.add_item(ore_type, 1)
 		
 		save_state()
 

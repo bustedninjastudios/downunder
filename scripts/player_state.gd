@@ -1,6 +1,6 @@
 extends Node
 
-var drill_power: int = 2
+var drill_power: int = 1
 var bombs: int = 3
 var money: int = 0
 var inventory: Dictionary = {}
@@ -12,6 +12,7 @@ func reset() -> void:
 	inventory = {}
 
 func add_item(item_name: String, amount: int) -> void:
+	print("Adding "+item_name+" x"+str(amount))
 	if inventory.has(item_name):
 		inventory[item_name] += amount
 	else:
