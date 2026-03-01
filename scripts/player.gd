@@ -11,12 +11,14 @@ var money: int = 0
 
 func _ready() -> void:
 	collision_mask = 1
-	
-	if SceneTransition.has_spawn_pos:
-		global_position = SceneTransition.pending_spawn_pos + SceneTransition.pending_push_offset
-		SceneTransition.has_spawn_pos = false
-		SceneTransition.pending_spawn_pos = Vector2.ZERO
-		SceneTransition.pending_push_offset = Vector2.ZERO
+	await get_tree().process_frame
+	if SceneTransitionManager.is_transitioning:
+		var entrance_name = SceneTransitionManager.pending_entrance
+		var entrance = get_tree().current_scene.find_child(entrance_name, true, false)
+		if entrance and entrance is Marker2D:
+			global_position = entrance.global_position
+			global_position += SceneTransitionManager.pending_push_offset
+		SceneTransitionManager.is_transitioning = false
 	
 	load_state()
 

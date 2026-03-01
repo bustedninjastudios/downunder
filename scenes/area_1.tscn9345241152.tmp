@@ -20,6 +20,12 @@ size = Vector2(201, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nww3i"]
 size = Vector2(242.72586, 164.44443)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1av67"]
+size = Vector2(87, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57x3n"]
+size = Vector2(59, 153)
+
 [node name="Root2" type="Node2D" unique_id=1348760703]
 
 [node name="Scene" type="Node2D" parent="." unique_id=1440797854]
@@ -51,8 +57,7 @@ texture = ExtResource("4_aq3wa")
 [node name="ToArea2Right" type="Area2D" parent="Exits" unique_id=1632475893]
 script = ExtResource("5_transition")
 target_scene = "area_2"
-target_entrance = "Left"
-is_vertical = null
+target_entrance = "Right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea2Right" unique_id=1632475894]
 position = Vector2(1856, 480)
@@ -62,7 +67,6 @@ shape = SubResource("RectangleShape2D_transition")
 script = ExtResource("5_transition")
 target_scene = "area_3"
 target_entrance = "Top"
-is_vertical = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea3Top" unique_id=1360537851]
 position = Vector2(773.5, 944)
@@ -108,8 +112,14 @@ texture = ExtResource("7_nww3i")
 
 [node name="Entrances" type="Node2D" parent="." unique_id=1386062087]
 
-[node name="Bottom" type="Marker2D" parent="Entrances" unique_id=1253070832]
-position = Vector2(768, 890)
+[node name="Bottom" type="Area2D" parent="Entrances" unique_id=1576246819]
 
-[node name="Right" type="Marker2D" parent="Entrances" unique_id=213462928]
-position = Vector2(1773, 370)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrances/Bottom" unique_id=505069294]
+position = Vector2(774, 880)
+shape = SubResource("RectangleShape2D_1av67")
+
+[node name="Right" type="Area2D" parent="Entrances" unique_id=1366467733]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrances/Right" unique_id=1830694326]
+position = Vector2(1751, 292)
+shape = SubResource("RectangleShape2D_57x3n")

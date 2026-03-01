@@ -40,12 +40,12 @@ func _create_ui() -> void:
 	hbox.add_theme_constant_override("separation", 10)
 	vbox.add_child(hbox)
 	
-	for i in range(1, 5):
-		var sprite = TextureRect.new()
-		var texture = load("res://sprites/Drill" + str(i) + ".png")
-		sprite.texture = texture
-		sprite.custom_minimum_size = Vector2(40, 40)
-		hbox.add_child(sprite)
+	#for i in range(1, 5):
+		#var sprite = TextureRect.new()
+		#var texture = load("res://sprites/Drill" + str(i) + ".png")
+		#sprite.texture = texture
+		#sprite.custom_minimum_size = Vector2(40, 40)
+		#hbox.add_child(sprite)
 	
 	var title = Label.new()
 	title.text = "DRILL SHOP"
@@ -64,6 +64,10 @@ func _create_ui() -> void:
 	for upg in upgrades:
 		var btn = Button.new()
 		btn.text = "upgrade to lvl " + str(upg["level"]) + " (" + str(50) + " " + upg["name"] + ")"
+		var icon_texture = load("res://sprites/Drill" + str(upg["level"] - 1) + ".png")
+		if icon_texture:
+			btn.icon = icon_texture
+			btn.expand_icon = true
 		if font:
 			btn.add_theme_font_override("font", font)
 		btn.add_theme_font_size_override("font_size", 28)
@@ -112,7 +116,8 @@ func _process(_delta: float) -> void:
 		return
 	
 	var player = tree.current_scene.get_node_or_null("Player")
-	if player:
+	var base = tree.current_scene.get_node_or_null("Base")
+	if player and base:
 		var dist = player.global_position.distance_to(base_position)
 		var was_near = player_near_base
 		player_near_base = dist < base_detection_radius
@@ -143,6 +148,7 @@ func _update_buttons() -> void:
 		if current_level >= upg["level"]:
 			btn.text = "max level"
 			btn.disabled = true
+			btn.icon = null
 		elif count >= 50:
 			btn.text = "upgrade to lvl " + str(upg["level"]) + " (50 " + upg["name"] + ")"
 			btn.disabled = false

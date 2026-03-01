@@ -20,12 +20,14 @@ config/icon="res://icon.svg"
 PlayerState="*res://scripts/player_state.gd"
 InventoryUI="*res://scripts/inventory_ui.gd"
 ShopUI="*res://scripts/shop_ui.gd"
+SceneTransitionManager="*uid://cavuiylwu18hj"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=960
 window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

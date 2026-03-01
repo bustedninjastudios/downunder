@@ -112,4 +112,4 @@ texture = ExtResource("7_nww3i")
 position = Vector2(768, 890)
 
 [node name="Right" type="Marker2D" parent="Entrances" unique_id=213462928]
-position = Vector2(1773, 370)
+position = Vector2(1761.9154, 229.40955)
