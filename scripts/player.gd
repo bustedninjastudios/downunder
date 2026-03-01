@@ -9,6 +9,8 @@ var drill_power: int = 1
 var bombs: int = 3
 var money: int = 0
 
+@onready var sprite: Sprite2D = $Sprite
+
 func _ready() -> void:
 	collision_mask = 1
 	await get_tree().process_frame
@@ -70,7 +72,10 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.length() > 1:
 		rotation = velocity.angle()
-	
+		if velocity.x >= 0:
+			sprite.flip_v = false
+		else:
+			sprite.flip_v = true
 	move_and_slide()
 
 func try_drill() -> void:

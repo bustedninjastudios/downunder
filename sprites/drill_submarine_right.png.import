@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c27qhy23avyr8"
-path="res://.godot/imported/Drill3.png-46f1a9a2a0a3d49309439d29939130da.ctex"
+uid="uid://chlpytuu5qmrb"
+path="res://.godot/imported/drill_submarine_right.png-5098c8d976a8d7f6af9f66183babcfa8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Drill3.png"
-dest_files=["res://.godot/imported/Drill3.png-46f1a9a2a0a3d49309439d29939130da.ctex"]
+source_file="res://sprites/drill_submarine_right.png"
+dest_files=["res://.godot/imported/drill_submarine_right.png-5098c8d976a8d7f6af9f66183babcfa8.ctex"]
 
 [params]
 

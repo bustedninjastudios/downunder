@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwhnm213mmejw"
-path="res://.godot/imported/Drill4.png-78a75be195322e50d4ef8d87d6168aac.ctex"
+path="res://.godot/imported/Drill4.png-71ca36f5ce0faf9e1a3e3edb0eb518cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Drill4.png"
-dest_files=["res://.godot/imported/Drill4.png-78a75be195322e50d4ef8d87d6168aac.ctex"]
+source_file="res://sprites/icons/Drill4.png"
+dest_files=["res://.godot/imported/Drill4.png-71ca36f5ce0faf9e1a3e3edb0eb518cd.ctex"]
 
 [params]
 

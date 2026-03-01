@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4cdlf1ufs1y3"
-path="res://.godot/imported/Kelp2.png-b5772b96b688ff874564389d0ab17805.ctex"
+uid="uid://c8oaco388gsdj"
+path="res://.godot/imported/bubble.png-52915485453d4cc9a6e80bf1ca131041.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Kelp2.png"
-dest_files=["res://.godot/imported/Kelp2.png-b5772b96b688ff874564389d0ab17805.ctex"]
+source_file="res://sprites/environment/bubble.png"
+dest_files=["res://.godot/imported/bubble.png-52915485453d4cc9a6e80bf1ca131041.ctex"]
 
 [params]
 

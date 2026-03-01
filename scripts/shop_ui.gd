@@ -64,7 +64,7 @@ func _create_ui() -> void:
 	for upg in upgrades:
 		var btn = Button.new()
 		btn.text = "upgrade to lvl " + str(upg["level"]) + " (" + str(50) + " " + upg["name"] + ")"
-		var icon_texture = load("res://sprites/Drill" + str(upg["level"] - 1) + ".png")
+		var icon_texture = load("res://sprites/icons/Drill" + str(upg["level"] - 1) + ".png")
 		if icon_texture:
 			btn.icon = icon_texture
 			btn.expand_icon = true

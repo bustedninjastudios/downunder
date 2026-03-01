@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxigr4ybln83r"
-path="res://.godot/imported/Kelp3.png-92f89c737f53207ff1003bfdef3b8081.ctex"
+uid="uid://cywv88d1qahmc"
+path="res://.godot/imported/Drill1.png-aff528a4fd447d230df3850435c6ea2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Kelp3.png"
-dest_files=["res://.godot/imported/Kelp3.png-92f89c737f53207ff1003bfdef3b8081.ctex"]
+source_file="res://sprites/icons/Drill1.png"
+dest_files=["res://.godot/imported/Drill1.png-aff528a4fd447d230df3850435c6ea2a.ctex"]
 
 [params]
 
