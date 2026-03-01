@@ -36,6 +36,8 @@ func save_state() -> void:
 var click_target: Vector2 = Vector2.ZERO
 var is_moving_to_click: bool = false
 var is_holding: bool = false
+var drill_cooldown: float = 0.0
+var drill_rate: float = 0.15
 
 func _physics_process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -44,8 +46,13 @@ func _physics_process(delta: float) -> void:
 	
 	is_holding = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	
-	if Input.is_action_just_pressed("use_item"):
+	if drill_cooldown > 0:
+		drill_cooldown -= delta
+	
+	var drilling = Input.is_action_pressed("use_item") or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+	if drilling and drill_cooldown <= 0:
 		try_drill()
+		drill_cooldown = drill_rate
 	
 	var direction := Vector2.ZERO
 	
@@ -72,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.length() > 1:
 		rotation = velocity.angle()
-		if velocity.x >= 0:
+		if velocity.x > 0:
 			sprite.flip_v = false
 		else:
 			sprite.flip_v = true
@@ -87,11 +94,14 @@ func try_drill() -> void:
 	var to_mouse = mouse_pos - global_position
 	var distance = to_mouse.length()
 	
-	if distance > 80 or distance < 16:
-		return
+	var drill_target: Vector2
+	if distance <= 80 and distance >= 16:
+		drill_target = mouse_pos
+	else:
+		drill_target = global_position + Vector2.from_angle(rotation) * 60.0
 	
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, mouse_pos, 1)
+	var query = PhysicsRayQueryParameters2D.create(global_position, drill_target, 1)
 	var result = space_state.intersect_ray(query)
 	
 	if result and result.collider is TileMapLayer:
