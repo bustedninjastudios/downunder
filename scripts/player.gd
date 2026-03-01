@@ -10,9 +10,13 @@ var bombs: int = 3
 var money: int = 0
 
 @onready var sprite: Sprite2D = $Sprite
+var highlight: ColorRect
+var highlight_tilemap: TileMapLayer
+var highlight_added: bool = false
 
 func _ready() -> void:
 	collision_mask = 1
+	
 	await get_tree().process_frame
 	if SceneTransitionManager.is_transitioning:
 		var entrance_name = SceneTransitionManager.pending_entrance
@@ -22,7 +26,19 @@ func _ready() -> void:
 			global_position += SceneTransitionManager.pending_push_offset
 		SceneTransitionManager.is_transitioning = false
 	
+	_apply_mined_tiles()
 	load_state()
+
+func _apply_mined_tiles() -> void:
+	var tilemap = get_tilemap()
+	if not tilemap:
+		return
+	
+	var scene_name = get_tree().current_scene.scene_file_path.get_file().get_basename()
+	var mined_positions = PlayerState.get_mined_tiles(scene_name)
+	
+	for tile_pos in mined_positions:
+		tilemap.erase_cell(tile_pos)
 
 func load_state() -> void:
 	drill_power = PlayerState.drill_power
@@ -54,6 +70,8 @@ func _physics_process(delta: float) -> void:
 		try_drill()
 		drill_cooldown = drill_rate
 	
+	_update_highlight()
+	
 	var direction := Vector2.ZERO
 	
 	if is_holding:
@@ -84,6 +102,35 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.flip_v = true
 	move_and_slide()
+
+func _update_highlight() -> void:
+	var tilemap = get_tilemap()
+	if not tilemap:
+		if highlight:
+			highlight.visible = false
+		return
+	
+	if not highlight_added:
+		highlight = ColorRect.new()
+		highlight.color = Color(1, 1, 0, 0.3)
+		highlight.size = Vector2(256, 128)
+		highlight.z_index = 200
+		tilemap.add_child(highlight)
+		highlight_added = true
+	
+	var mouse_pos = get_global_mouse_position()
+	var to_mouse = mouse_pos - global_position
+	var distance = to_mouse.length()
+	
+	var drill_target: Vector2
+	if distance <= 80 and distance >= 16:
+		drill_target = mouse_pos
+	else:
+		drill_target = global_position + Vector2.from_angle(rotation) * 60.0
+	
+	var tile_pos = tilemap.local_to_map(drill_target)
+	highlight.position = Vector2((tile_pos.x - 2) * 64, (tile_pos.y - 1) * 64)
+	highlight.visible = true
 
 func try_drill() -> void:
 	var tilemap = get_tilemap()
@@ -155,6 +202,8 @@ func try_drill() -> void:
 					if PlayerState.drill_power >= required_power:
 						tilemap.erase_cell(target_tile)
 						PlayerState.add_item(ore_type, 1)
+						var scene_name = get_tree().current_scene.scene_file_path.get_file().get_basename()
+						PlayerState.add_mined_tile(scene_name, target_tile)
 		
 		save_state()
 

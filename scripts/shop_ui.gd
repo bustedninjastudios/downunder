@@ -4,7 +4,7 @@ var panel: Panel
 var vbox: VBoxContainer
 var upgrade_buttons: Dictionary = {}
 var player_near_base: bool = false
-
+const UPGRADE_COST = 250
 var base_position := Vector2(1221.5, 641)
 var base_detection_radius := 120.0
 
@@ -63,7 +63,7 @@ func _create_ui() -> void:
 	
 	for upg in upgrades:
 		var btn = Button.new()
-		btn.text = "upgrade to lvl " + str(upg["level"]) + " (" + str(50) + " " + upg["name"] + ")"
+		btn.text = "upgrade to lvl " + str(upg["level"]) + " (" + str(UPGRADE_COST) + " " + upg["name"] + ")"
 		var icon_texture = load("res://sprites/icons/Drill" + str(upg["level"] - 1) + ".png")
 		if icon_texture:
 			btn.icon = icon_texture
@@ -98,8 +98,8 @@ func _on_upgrade_pressed(material: String, level: int) -> void:
 	var inventory = PlayerState.inventory
 	var count = inventory.get("soft_" + material, 0) + inventory.get("hard_" + material, 0)
 	
-	if count >= 50 and PlayerState.drill_power < level:
-		PlayerState.inventory["soft_" + material] = inventory.get("soft_" + material, 0) - 50
+	if count >= UPGRADE_COST and PlayerState.drill_power < level:
+		PlayerState.inventory["soft_" + material] = inventory.get("soft_" + material, 0) - UPGRADE_COST
 		if PlayerState.inventory["soft_" + material] < 0:
 			var remaining = abs(PlayerState.inventory["soft_" + material])
 			PlayerState.inventory["hard_" + material] = inventory.get("hard_" + material, 0) - remaining
@@ -149,9 +149,9 @@ func _update_buttons() -> void:
 			btn.text = "max level"
 			btn.disabled = true
 			btn.icon = null
-		elif count >= 50:
-			btn.text = "upgrade to lvl " + str(upg["level"]) + " (50 " + upg["name"] + ")"
+		elif count >= UPGRADE_COST:
+			btn.text = "upgrade to lvl " + str(upg["level"]) + " ("+str(UPGRADE_COST) + " " + upg["name"] + ")"
 			btn.disabled = false
 		else:
-			btn.text = "need 50 " + upg["name"] + " (" + str(count) + "/50)"
+			btn.text = "need 50 " + upg["name"] + " (" + str(count) + "/"+ str(UPGRADE_COST) + ")"
 			btn.disabled = true
