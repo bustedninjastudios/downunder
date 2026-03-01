@@ -113,7 +113,7 @@ func _update_highlight() -> void:
 	if not highlight_added:
 		highlight = ColorRect.new()
 		highlight.color = Color(1, 1, 0, 0.3)
-		highlight.size = Vector2(256, 128)
+		highlight.size = Vector2(256, 192)
 		highlight.z_index = 200
 		tilemap.add_child(highlight)
 		highlight_added = true
@@ -122,15 +122,19 @@ func _update_highlight() -> void:
 	var to_mouse = mouse_pos - global_position
 	var distance = to_mouse.length()
 	
-	var drill_target: Vector2
-	if distance <= 80 and distance >= 16:
-		drill_target = mouse_pos
-	else:
-		drill_target = global_position + Vector2.from_angle(rotation) * 60.0
+	if distance > 80 or distance < 16:
+		highlight.visible = false
+		return
 	
-	var tile_pos = tilemap.local_to_map(drill_target)
-	highlight.position = Vector2((tile_pos.x - 2) * 64, (tile_pos.y - 1) * 64)
-	highlight.visible = true
+	var tile_pos = tilemap.local_to_map(mouse_pos)
+	var tile_data = tilemap.get_cell_tile_data(tile_pos)
+	
+	if tile_data:
+		highlight.position = Vector2((tile_pos.x - 2) * 64, (tile_pos.y - 1) * 64)
+		highlight.size = Vector2(256, 192)
+		highlight.visible = true
+	else:
+		highlight.visible = false
 
 func try_drill() -> void:
 	var tilemap = get_tilemap()
@@ -145,7 +149,7 @@ func try_drill() -> void:
 	if distance <= 80 and distance >= 16:
 		drill_target = mouse_pos
 	else:
-		drill_target = global_position + Vector2.from_angle(rotation) * 60.0
+		drill_target = global_position + Vector2.from_angle(rotation) * 48.0
 	
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(global_position, drill_target, 1)
