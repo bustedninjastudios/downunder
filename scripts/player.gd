@@ -136,7 +136,7 @@ func _update_highlight() -> void:
 	if tile_data:
 		highlight.position = Vector2((tile_pos.x - 2) * 64, (tile_pos.y - 1) * 64)
 		highlight.size = Vector2(64, 64)
-		highlight.visible = true   
+		highlight.visible = true
 	else:
 		highlight.visible = false
 
@@ -232,7 +232,7 @@ func get_drill_reach() -> float:
 	return 48.0 + (level - 1) * 10.0
 	
 func get_drill_radius() -> int:
-	return clamp(PlayerState.drill_power - 1, 0, 4) / 2
+	return clamp((PlayerState.drill_power - 1) / 2, 0, 2)
 	
 func get_scaled_move_speed() -> float:
 	var level := PlayerState.drill_power

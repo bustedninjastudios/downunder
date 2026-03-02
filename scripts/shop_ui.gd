@@ -4,7 +4,7 @@ var panel: Panel
 var vbox: VBoxContainer
 var upgrade_buttons: Dictionary = {}
 var player_near_base: bool = false
-const UPGRADE_COST = 250
+const UPGRADE_COST = 500
 var base_position := Vector2(1221.5, 641)
 var base_detection_radius := 120.0
 
