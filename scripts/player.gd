@@ -41,6 +41,7 @@ func _apply_mined_tiles() -> void:
 		tilemap.erase_cell(tile_pos)
 
 func load_state() -> void:
+	print("setting state: {0} {1} {2}".format([PlayerState.drill_power, PlayerState.bombs, PlayerState.money]))
 	drill_power = PlayerState.drill_power
 	bombs = PlayerState.bombs
 	money = PlayerState.money
@@ -68,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	var drilling = Input.is_action_pressed("use_item") or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
 	if drilling and drill_cooldown <= 0:
 		try_drill()
-		drill_cooldown = drill_rate
+		drill_cooldown = get_scaled_drill_rate()
 	
 	_update_highlight()
 	
@@ -92,8 +93,11 @@ func _physics_process(delta: float) -> void:
 			is_moving_to_click = false
 			direction = input_dir
 	
-	target_velocity = direction * move_speed
-	velocity = velocity.lerp(target_velocity, acceleration * delta)
+	target_velocity = direction * get_scaled_move_speed()
+	print("vel: {0}, scaled {1}".format([direction, target_velocity]))
+	
+	var accel := acceleration + PlayerState.drill_power * 1.5
+	velocity = velocity.lerp(target_velocity, accel * delta)
 	
 	if velocity.length() > 1:
 		rotation = velocity.angle()
@@ -131,8 +135,8 @@ func _update_highlight() -> void:
 	
 	if tile_data:
 		highlight.position = Vector2((tile_pos.x - 2) * 64, (tile_pos.y - 1) * 64)
-		highlight.size = Vector2(256, 192)
-		highlight.visible = true
+		highlight.size = Vector2(64, 64)
+		highlight.visible = true   
 	else:
 		highlight.visible = false
 
@@ -146,10 +150,10 @@ func try_drill() -> void:
 	var distance = to_mouse.length()
 	
 	var drill_target: Vector2
-	if distance <= 80 and distance >= 16:
+	if distance <= get_drill_reach() and distance >= 16:
 		drill_target = mouse_pos
 	else:
-		drill_target = global_position + Vector2.from_angle(rotation) * 48.0
+		drill_target = global_position + Vector2.from_angle(rotation) * get_drill_reach()
 	
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(global_position, drill_target, 1)
@@ -159,8 +163,10 @@ func try_drill() -> void:
 		var local_pos = tilemap.to_local(result.position)
 		var tile_pos = tilemap.local_to_map(local_pos)
 		
-		for x in range(-2, 2):
-			for y in range(-1, 2):
+		var radius := get_drill_radius()
+
+		for x in range(-2 - radius, 2 + radius):
+			for y in range(-1 - radius, 2 + radius):
 				var target_tile = tile_pos + Vector2i(x, y)
 				var tile_data = tilemap.get_cell_tile_data(target_tile)
 				if tile_data:
@@ -220,14 +226,22 @@ func get_tilemap() -> TileMapLayer:
 func add_money(amount: int) -> void:
 	money += amount
 	save_state()
+	
+func get_drill_reach() -> float:
+	var level := PlayerState.drill_power
+	return 48.0 + (level - 1) * 10.0
+	
+func get_drill_radius() -> int:
+	return clamp(PlayerState.drill_power - 1, 0, 4) / 2
+	
+func get_scaled_move_speed() -> float:
+	var level := PlayerState.drill_power
+	return move_speed + (level - 1) * 30
 
-func use_bomb() -> bool:
-	if bombs > 0:
-		bombs -= 1
-		save_state()
-		return true
-	return false
-
+func get_scaled_drill_rate() -> float:
+	var level := PlayerState.drill_power
+	return max(0.05, 0.15 - level * 0.01)
+	
 func _get_keyboard_input() -> Vector2:
 	var direction := Vector2.ZERO
 	

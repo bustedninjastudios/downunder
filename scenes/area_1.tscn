@@ -46,21 +46,21 @@ texture = ExtResource("3_nww3i")
 
 [node name="Exits" type="Node2D" parent="." unique_id=1632475892]
 
-[node name="ToArea2Left" type="Area2D" parent="Exits" unique_id=1632475893]
+[node name="ToArea1Left" type="Area2D" parent="Exits" unique_id=1632475893]
 script = ExtResource("5_transition")
-target_scene = "area_2"
+target_scene = "area_1_right"
 target_entrance = "Left"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea2Left" unique_id=1632475894]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea1Left" unique_id=1632475894]
 position = Vector2(1856, 480)
 shape = SubResource("RectangleShape2D_transition")
 
-[node name="ToArea3Top" type="Area2D" parent="Exits" unique_id=623967160]
+[node name="ToArea2Top" type="Area2D" parent="Exits" unique_id=623967160]
 script = ExtResource("5_transition")
-target_scene = "area_3"
+target_scene = "area_2"
 target_entrance = "Top"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea3Top" unique_id=1360537851]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea2Top" unique_id=1360537851]
 position = Vector2(773.5, 944)
 shape = SubResource("RectangleShape2D_transition_h")
 

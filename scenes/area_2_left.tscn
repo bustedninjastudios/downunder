@@ -305,12 +305,12 @@ tile_set = SubResource("TileSet_1av67")
 
 [node name="Exits" type="Node2D" parent="." unique_id=1632475892]
 
-[node name="ToArea3Left" type="Area2D" parent="Exits" unique_id=511139999]
+[node name="ToArea2Left" type="Area2D" parent="Exits" unique_id=511139999]
 script = ExtResource("3_krwxb")
-target_scene = "area_3"
+target_scene = "area_2"
 target_entrance = "Left"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea3Left" unique_id=34951052]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/ToArea2Left" unique_id=34951052]
 position = Vector2(1887, 512)
 shape = SubResource("RectangleShape2D_rqpjr")
 
