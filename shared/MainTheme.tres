@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://ca5lxx0ersfbr"]
+
+[ext_resource type="FontFile" uid="uid://dyyd4k70e5kq0" path="res://fonts/TerminusTTF-4.49.3.ttf" id="1_65fiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65fiv"]
+corner_detail = 1
+
+[resource]
+default_font = ExtResource("1_65fiv")
+default_font_size = 18
+Button/styles/UI = SubResource("StyleBoxFlat_65fiv")

@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dpdax0u4culx0" path="res://textures/sprites.tres" id="1_b0e21"]
 [ext_resource type="Texture2D" uid="uid://bec5qt3evj435" path="res://textures/raw/terrainsheet.png" id="2_is5ec"]
-[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene_transition.gd" id="3_jhhyk"]
+[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene/scene_transition.gd" id="3_jhhyk"]
 [ext_resource type="Script" uid="uid://mf66bxpxm1ae" path="res://scripts/player.gd" id="4_yvqfw"]
 [ext_resource type="Shape2D" uid="uid://b5oel6h54avgc" path="res://shared/player_shape.tres" id="5_qja21"]
 [ext_resource type="Texture2D" uid="uid://chlpytuu5qmrb" path="res://sprites/drill_submarine_right.png" id="6_of2ok"]

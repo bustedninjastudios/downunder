@@ -10,17 +10,21 @@ config_version=5
 
 [application]
 
-config/name="Down Unders"
+config/name="Down Under"
+config/version="1.0.33"
 run/main_scene="uid://cea1sc4qofuos"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dtxbsd0f8dk4v"
 
 [autoload]
 
 PlayerState="*res://scripts/player_state.gd"
-InventoryUI="*res://scripts/inventory_ui.gd"
-ShopUI="*res://scripts/shop_ui.gd"
+InventoryUIHandler="res://scripts/ui/loaders/inventory_ui_loader.gd"
+ShopUI="res://scripts/ui/shop_ui.gd"
 SceneTransitionManager="*uid://cavuiylwu18hj"
+MCPScreenshot="*res://addons/godot_mcp/mcp_screenshot_service.gd"
+MCPInputService="*res://addons/godot_mcp/mcp_input_service.gd"
+MCPGameInspector="*res://addons/godot_mcp/mcp_game_inspector_service.gd"
 
 [display]
 
@@ -32,6 +36,15 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="New Game Project"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_mcp/plugin.cfg")
+
+[gui]
+
+theme/default_font_subpixel_positioning=0
+theme/custom="uid://ca5lxx0ersfbr"
 
 [input]
 

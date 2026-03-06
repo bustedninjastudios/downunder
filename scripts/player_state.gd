@@ -2,13 +2,37 @@ extends Node
 
 var drill_power: int = 1
 var bombs: int = 3
+var radars: int = 3
 var money: int = 0
 var inventory: Dictionary = {}
 var mined_tiles: Dictionary = {}
 
+var item_prices: Dictionary = {
+	"sand": 0,
+	"soft_rock": 0,
+	"hard_rock": 0,
+	"ultra_hard_rock": 10,
+	"soft_copper": 5,
+	"hard_copper": 10,
+	"soft_iron": 20,
+	"hard_iron": 25,
+	"soft_gold": 35,
+	"hard_gold": 50
+}
+
+func sell_all_ores() -> void:
+	var total_sale = 0
+	for item in inventory.keys():
+		if item_prices.has(item):
+			total_sale += inventory[item] * item_prices[item]
+	
+	money += total_sale
+	inventory.clear()
+
 func reset() -> void:
 	drill_power = 1
 	bombs = 3
+	radars = 3
 	money = 0
 	inventory = {}
 

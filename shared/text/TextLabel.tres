@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://calgi5oxckyo4"]
+
+[ext_resource type="FontFile" uid="uid://dyyd4k70e5kq0" path="res://fonts/TerminusTTF-4.49.3.ttf" id="1_kd8ri"]
+
+[resource]
+font = ExtResource("1_kd8ri")
+font_size = 37

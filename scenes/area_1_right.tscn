@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://dpdax0u4culx0" path="res://textures/sprites.tres" id="1_rckrr"]
 [ext_resource type="Texture2D" uid="uid://bec5qt3evj435" path="res://textures/raw/terrainsheet.png" id="2_ecd85"]
 [ext_resource type="Texture2D" uid="uid://c8oaco388gsdj" path="res://sprites/environment/bubble.png" id="3_ecd85"]
-[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene_transition.gd" id="3_sen15"]
+[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene/scene_transition.gd" id="3_sen15"]
 [ext_resource type="Script" uid="uid://mf66bxpxm1ae" path="res://scripts/player.gd" id="4_5kg0p"]
 [ext_resource type="Shape2D" uid="uid://b5oel6h54avgc" path="res://shared/player_shape.tres" id="5_okw1m"]
 [ext_resource type="Texture2D" uid="uid://chlpytuu5qmrb" path="res://sprites/drill_submarine_right.png" id="6_khcio"]

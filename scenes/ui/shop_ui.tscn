@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://de81hg1tdb1u1"]
+
+[ext_resource type="LabelSettings" uid="uid://calgi5oxckyo4" path="res://shared/text/TextLabel.tres" id="1_avfhx"]
+[ext_resource type="Script" uid="uid://dbsylvwsod7lr" path="res://scripts/ui/shop_ui.gd" id="1_sawmr"]
+[ext_resource type="Texture2D" uid="uid://cywv88d1qahmc" path="res://sprites/icons/Drill1.png" id="2_nwxdi"]
+[ext_resource type="Texture2D" uid="uid://r66ia1bb4lwg" path="res://sprites/icons/Drill2.png" id="3_q65g1"]
+[ext_resource type="Texture2D" uid="uid://c27qhy23avyr8" path="res://sprites/icons/Drill3.png" id="4_sawmr"]
+[ext_resource type="Texture2D" uid="uid://cwhnm213mmejw" path="res://sprites/icons/Drill4.png" id="5_se4pl"]
+[ext_resource type="Texture2D" uid="uid://d0uuwnphubovi" path="res://sprites/icons/seabomb.png" id="7_riyc1"]
+[ext_resource type="Texture2D" uid="uid://cpmu1mhub78dr" path="res://sprites/icons/radar.png" id="8_30c1b"]
+
+[node name="ShopUi" type="Control" unique_id=1170269849]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sawmr")
+
+[node name="Body" type="ColorRect" parent="." unique_id=725597740]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 1344.0
+offset_bottom = 640.0
+color = Color(1, 1, 1, 0.19215687)
+
+[node name="Money" type="Label" parent="Body" unique_id=1022250264]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 280.82645
+offset_bottom = 62.0
+text = "the shop"
+label_settings = ExtResource("1_avfhx")
+
+[node name="DrillUpgrades" type="Control" parent="Body" unique_id=30913902]
+anchors_preset = 0
+offset_top = 152.0
+offset_right = 334.0
+offset_bottom = 446.0
+
+[node name="Drill1" type="Button" parent="Body/DrillUpgrades" unique_id=842014710 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 302.0
+offset_bottom = 105.0
+text = "buy drill level 1 (250)	"
+icon = ExtResource("2_nwxdi")
+
+[node name="Drill2" type="Button" parent="Body/DrillUpgrades" unique_id=393540258 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 302.0
+offset_bottom = 161.0
+text = "buy drill level 2 (1000)	"
+icon = ExtResource("3_q65g1")
+
+[node name="Drill3" type="Button" parent="Body/DrillUpgrades" unique_id=1092568634 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 178.0
+offset_right = 302.0
+offset_bottom = 219.0
+text = "buy drill level 3 (2000)"
+icon = ExtResource("4_sawmr")
+
+[node name="Drill4" type="Button" parent="Body/DrillUpgrades" unique_id=1176267370 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 234.0
+offset_right = 302.0
+offset_bottom = 275.0
+text = "buy drill level 4 (5000)"
+icon = ExtResource("5_se4pl")
+
+[node name="Drills" type="Label" parent="Body/DrillUpgrades" unique_id=1292095586]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 10.0
+offset_right = 302.0
+offset_bottom = 48.0
+text = "drill upgrades:"
+label_settings = ExtResource("1_avfhx")
+
+[node name="QuickSell" type="Button" parent="Body" unique_id=281919359]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 152.0
+offset_bottom = 113.0
+text = "quick sell"
+
+[node name="Consumables" type="Control" parent="Body" unique_id=453349201]
+anchors_preset = 0
+offset_left = 368.0
+offset_top = 152.0
+offset_right = 624.0
+offset_bottom = 448.0
+
+[node name="Consumables" type="Label" parent="Body/Consumables" unique_id=1947539732]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 286.0
+offset_bottom = 46.0
+text = "consumables:"
+label_settings = ExtResource("1_avfhx")
+
+[node name="Bomb5x" type="Button" parent="Body/Consumables" unique_id=128699451 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 240.0
+offset_bottom = 109.0
+text = "buy 5x bomb (200)"
+icon = ExtResource("7_riyc1")
+
+[node name="Radar5x" type="Button" parent="Body/Consumables" unique_id=631112365 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 240.0
+offset_bottom = 165.0
+text = "buy 5x radar (250)"
+icon = ExtResource("8_30c1b")
+
+[node name="Placeholder" type="Button" parent="Body/Consumables" unique_id=1290669786 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 176.0
+offset_right = 240.0
+offset_bottom = 221.0
+disabled = true
+text = "coming soon..."
+
+[node name="Placeholder2" type="Button" parent="Body/Consumables" unique_id=481685174 groups=["ui_buttons"]]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 232.0
+offset_right = 240.0
+offset_bottom = 277.0
+disabled = true
+text = "coming soon..."

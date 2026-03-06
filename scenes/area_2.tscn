@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://mf66bxpxm1ae" path="res://scripts/player.gd" id="4_xpscb"]
 [ext_resource type="Shape2D" uid="uid://b5oel6h54avgc" path="res://shared/player_shape.tres" id="5_4y6gb"]
 [ext_resource type="Texture2D" uid="uid://chlpytuu5qmrb" path="res://sprites/drill_submarine_right.png" id="5_pdvjp"]
-[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene_transition.gd" id="5_transition"]
+[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene/scene_transition.gd" id="5_transition"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nww3i"]
 atlas = ExtResource("2_xpscb")

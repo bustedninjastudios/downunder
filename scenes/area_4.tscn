@@ -2,11 +2,11 @@
 
 [ext_resource type="TileSet" uid="uid://dpdax0u4culx0" path="res://textures/sprites.tres" id="1_vytc4"]
 [ext_resource type="Texture2D" uid="uid://bec5qt3evj435" path="res://textures/raw/terrainsheet.png" id="2_tkw8a"]
-[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene_transition.gd" id="3_00e6r"]
+[ext_resource type="Script" uid="uid://dqig2q0sskcue" path="res://scripts/scene/scene_transition.gd" id="3_00e6r"]
 [ext_resource type="Script" uid="uid://mf66bxpxm1ae" path="res://scripts/player.gd" id="4_qu6fi"]
 [ext_resource type="Shape2D" uid="uid://b5oel6h54avgc" path="res://shared/player_shape.tres" id="5_alpkm"]
 [ext_resource type="Texture2D" uid="uid://chlpytuu5qmrb" path="res://sprites/drill_submarine_right.png" id="6_57866"]
-[ext_resource type="Script" uid="uid://binnlpc01v1vw" path="res://scripts/win.gd" id="8_00e6r"]
+[ext_resource type="Script" uid="uid://binnlpc01v1vw" path="res://scripts/win_trigger.gd" id="8_00e6r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nww3i"]
 atlas = ExtResource("2_tkw8a")

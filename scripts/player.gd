@@ -10,22 +10,19 @@ var bombs: int = 3
 var money: int = 0
 
 @onready var sprite: Sprite2D = $Sprite
-var highlight: ColorRect
-var highlight_tilemap: TileMapLayer
-var highlight_added: bool = false
-
 func _ready() -> void:
 	collision_mask = 1
-	
+
 	await get_tree().process_frame
+	
+	# Teleport to appropriate area entrance
 	if SceneTransitionManager.is_transitioning:
 		var entrance_name = SceneTransitionManager.pending_entrance
 		var entrance = get_tree().current_scene.find_child(entrance_name, true, false)
 		if entrance and entrance is Marker2D:
 			global_position = entrance.global_position
-			global_position += SceneTransitionManager.pending_push_offset
 		SceneTransitionManager.is_transitioning = false
-	
+		
 	_apply_mined_tiles()
 	load_state()
 
@@ -41,7 +38,6 @@ func _apply_mined_tiles() -> void:
 		tilemap.erase_cell(tile_pos)
 
 func load_state() -> void:
-	print("setting state: {0} {1} {2}".format([PlayerState.drill_power, PlayerState.bombs, PlayerState.money]))
 	drill_power = PlayerState.drill_power
 	bombs = PlayerState.bombs
 	money = PlayerState.money
@@ -71,7 +67,6 @@ func _physics_process(delta: float) -> void:
 		try_drill()
 		drill_cooldown = get_scaled_drill_rate()
 	
-	_update_highlight()
 	
 	var direction := Vector2.ZERO
 	
@@ -94,7 +89,6 @@ func _physics_process(delta: float) -> void:
 			direction = input_dir
 	
 	target_velocity = direction * get_scaled_move_speed()
-	print("vel: {0}, scaled {1}".format([direction, target_velocity]))
 	
 	var accel := acceleration + PlayerState.drill_power * 1.5
 	velocity = velocity.lerp(target_velocity, accel * delta)
@@ -106,39 +100,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.flip_v = true
 	move_and_slide()
-
-func _update_highlight() -> void:
-	var tilemap = get_tilemap()
-	if not tilemap:
-		if highlight:
-			highlight.visible = false
-		return
-	
-	if not highlight_added:
-		highlight = ColorRect.new()
-		highlight.color = Color(1, 1, 0, 0.3)
-		highlight.size = Vector2(256, 192)
-		highlight.z_index = 200
-		tilemap.add_child(highlight)
-		highlight_added = true
-	
-	var mouse_pos = get_global_mouse_position()
-	var to_mouse = mouse_pos - global_position
-	var distance = to_mouse.length()
-	
-	if distance > 80 or distance < 16:
-		highlight.visible = false
-		return
-	
-	var tile_pos = tilemap.local_to_map(mouse_pos)
-	var tile_data = tilemap.get_cell_tile_data(tile_pos)
-	
-	if tile_data:
-		highlight.position = Vector2((tile_pos.x - 2) * 64, (tile_pos.y - 1) * 64)
-		highlight.size = Vector2(64, 64)
-		highlight.visible = true
-	else:
-		highlight.visible = false
 
 func try_drill() -> void:
 	var tilemap = get_tilemap()
