@@ -41,7 +41,6 @@ tile_set = ExtResource("1_0bq5r")
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1562757591]
 position = Vector2(980, 155)
 script = ExtResource("4_0bq5r")
-move_speed = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1641131038]
 shape = ExtResource("3_1av67")

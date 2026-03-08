@@ -26,10 +26,6 @@ func _process(_delta: float) -> void:
 		_update_ui()
 
 func _update_ui() -> void:
-	var money_label = get_node_or_null("Body/Money")
-	if money_label:
-		money_label.text = "THE SHOP - CASH: $" + str(PlayerState.money)
-	
 	for item_id in shop_items.keys():
 		var button = find_child(item_id, true, false)
 		if button is Button:
@@ -56,7 +52,7 @@ func _on_quick_sell_pressed():
 	PlayerState.sell_all_ores()
 	_update_ui()
 
-# Signals from Area2D in the world (assigned via editor usually, or manually)
+# Signals were placed in the editor manually, not added by script.
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		visible = true

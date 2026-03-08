@@ -23,7 +23,7 @@ script = ExtResource("1_sawmr")
 layout_mode = 0
 offset_left = 576.0
 offset_top = 192.0
-offset_right = 1344.0
+offset_right = 1232.0
 offset_bottom = 640.0
 color = Color(1, 1, 1, 0.19215687)
 
@@ -48,7 +48,7 @@ offset_left = 24.0
 offset_top = 64.0
 offset_right = 302.0
 offset_bottom = 105.0
-text = "buy drill level 1 (250)	"
+text = "buy drill repair (250)	"
 icon = ExtResource("2_nwxdi")
 
 [node name="Drill2" type="Button" parent="Body/DrillUpgrades" unique_id=393540258 groups=["ui_buttons"]]

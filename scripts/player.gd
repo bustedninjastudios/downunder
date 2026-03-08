@@ -1,21 +1,18 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 200.0
+@export var move_speed: float = 300.0
 @export var acceleration: float = 20.0
 
 var target_velocity: Vector2 = Vector2.ZERO
 
-var drill_power: int = 1
-var bombs: int = 3
-var money: int = 0
-
 @onready var sprite: Sprite2D = $Sprite
 func _ready() -> void:
+	# Terrain tiles have their collision mask to 1. Same number cant collide
 	collision_mask = 1
-
+	# process_frame waits until physics process, before render.
 	await get_tree().process_frame
 	
-	# Teleport to appropriate area entrance
+	# Teleportations
 	if SceneTransitionManager.is_transitioning:
 		var entrance_name = SceneTransitionManager.pending_entrance
 		var entrance = get_tree().current_scene.find_child(entrance_name, true, false)
@@ -23,10 +20,7 @@ func _ready() -> void:
 			global_position = entrance.global_position
 		SceneTransitionManager.is_transitioning = false
 		
-	_apply_mined_tiles()
-	load_state()
-
-func _apply_mined_tiles() -> void:
+	# Load blocks player mined.
 	var tilemap = get_tilemap()
 	if not tilemap:
 		return
@@ -37,26 +31,13 @@ func _apply_mined_tiles() -> void:
 	for tile_pos in mined_positions:
 		tilemap.erase_cell(tile_pos)
 
-func load_state() -> void:
-	drill_power = PlayerState.drill_power
-	bombs = PlayerState.bombs
-	money = PlayerState.money
 
-func save_state() -> void:
-	PlayerState.bombs = bombs
-	PlayerState.money = money
-
-var click_target: Vector2 = Vector2.ZERO
+#var click_target: Vector2 = Vector2.ZERO
 var is_moving_to_click: bool = false
 var is_holding: bool = false
 var drill_cooldown: float = 0.0
-var drill_rate: float = 0.15
 
 func _physics_process(delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		click_target = get_global_mouse_position()
-		is_moving_to_click = true
-	
 	is_holding = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	
 	if drill_cooldown > 0:
@@ -67,23 +48,19 @@ func _physics_process(delta: float) -> void:
 		try_drill()
 		drill_cooldown = get_scaled_drill_rate()
 	
-	
 	var direction := Vector2.ZERO
 	
+	# Mouse input
 	if is_holding:
 		var to_mouse := get_global_mouse_position() - global_position
 		if to_mouse.length() > 8:
 			direction = to_mouse.normalized()
 			is_moving_to_click = false
-	elif is_moving_to_click:
-		var to_target := click_target - global_position
-		if to_target.length() > 8:
-			direction = to_target.normalized()
-		else:
-			is_moving_to_click = false
 	
+	# Keyboard input
 	if direction == Vector2.ZERO:
-		var input_dir := _get_keyboard_input()
+		# Nice shortcut method that works well with our input maps.
+		var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if input_dir.length() > 0:
 			is_moving_to_click = false
 			direction = input_dir
@@ -111,6 +88,8 @@ func try_drill() -> void:
 	var distance = to_mouse.length()
 	
 	var drill_target: Vector2
+	# Automine. Convenient for AFK, although the game isn't 
+	# long enough to justify AFKing.
 	if distance <= get_drill_reach() and distance >= 16:
 		drill_target = mouse_pos
 	else:
@@ -124,8 +103,9 @@ func try_drill() -> void:
 		var local_pos = tilemap.to_local(result.position)
 		var tile_pos = tilemap.local_to_map(local_pos)
 		
-		var radius := get_drill_radius()
+		var radius = get_drill_radius()
 
+		# This was written by AI, given i had zero intention of manually writing all ts shit
 		for x in range(-2 - radius, 2 + radius):
 			for y in range(-1 - radius, 2 + radius):
 				var target_tile = tile_pos + Vector2i(x, y)
@@ -176,43 +156,26 @@ func try_drill() -> void:
 						var scene_name = get_tree().current_scene.scene_file_path.get_file().get_basename()
 						PlayerState.add_mined_tile(scene_name, target_tile)
 		
-		save_state()
 
 func get_tilemap() -> TileMapLayer:
 	var root = get_tree().current_scene
 	if root and root.has_node("Scene/MainLayer"):
 		return root.get_node("Scene/MainLayer")
 	return null
-
-func add_money(amount: int) -> void:
-	money += amount
-	save_state()
 	
+#region Player stat scaling
 func get_drill_reach() -> float:
-	var level := PlayerState.drill_power
+	var level = PlayerState.drill_power
 	return 48.0 + (level - 1) * 10.0
 	
 func get_drill_radius() -> int:
 	return clamp((PlayerState.drill_power - 1) / 2, 0, 2)
 	
 func get_scaled_move_speed() -> float:
-	var level := PlayerState.drill_power
+	var level = PlayerState.drill_power
 	return move_speed + (level - 1) * 30
 
 func get_scaled_drill_rate() -> float:
-	var level := PlayerState.drill_power
+	var level = PlayerState.drill_power
 	return max(0.05, 0.15 - level * 0.01)
-	
-func _get_keyboard_input() -> Vector2:
-	var direction := Vector2.ZERO
-	
-	if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):
-		direction.y -= 1
-	if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
-		direction.y += 1
-	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):
-		direction.x -= 1
-	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
-		direction.x += 1
-	
-	return direction.normalized()
+#endregion
