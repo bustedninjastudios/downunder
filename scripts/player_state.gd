@@ -6,6 +6,7 @@ var radars: int = 3
 var money: int = 0
 var inventory: Dictionary = {}
 var mined_tiles: Dictionary = {}
+var is_mining = false
 
 var item_prices: Dictionary = {
 	"sand": 0,

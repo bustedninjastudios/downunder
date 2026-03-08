@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	if drill_cooldown > 0:
 		drill_cooldown -= delta
 	
-	var drilling = Input.is_action_pressed("use_item") or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+	var drilling = Input.is_action_pressed("use_item") or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) or PlayerState.is_mining
 	if drilling and drill_cooldown <= 0:
 		try_drill()
 		drill_cooldown = get_scaled_drill_rate()
