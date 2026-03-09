@@ -106,15 +106,20 @@ jobs:
           folder: build/web # The folder the action should deploy.
       - name: Extract version
         shell: bash
-        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
-      - name: Upload ${{ matrix.preset }} to itch.io project
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+          else
+            echo "version=0.0.0-${GITHUB_SHA::7}" >> $GITHUB_ENV
+          fi
+      - name: Upload Web to itch.io project
         uses: robpc/itchio-upload-action@v1
         with:
-          path: build/${{ matrix.preset }}
+          path: build/web
           project: ${{ env.itchio_project }}
-          channel: ${{ env.itchio_channel }}
+          channel: web
           version: ${{ env.version }}
-          api-key: ${{ secrets.ITCHIO_API_KEY }}
+          api-key: ${{ secrets.BUTLER_API_KEY }}
 
   export-mac:
     name: Mac Export
