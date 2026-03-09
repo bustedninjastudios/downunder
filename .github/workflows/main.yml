@@ -158,7 +158,7 @@ jobs:
           if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
             echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
           else
-            echo "version=0.0.0-${GITHUB_SHA::7}" >> $GITHUB_ENV
+            echo "version=v${GITHUB_SHA::7}" >> $GITHUB_ENV
           fi
       # - name: Install rsync 
       #   run: |
