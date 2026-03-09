@@ -44,7 +44,7 @@ jobs:
           else
             # Triggered by a branch push, check commit message.
             COMMIT_MSG="${{ github.event.head_commit.message }}"
-            if [[ "$COMMIT_MSG" == *"force_ci"* ]] || [[ "$COMMIT_MSG" =~ v[0-9]+\.[0-9]+(\.[0-9]+)? ]]; then
+            if [[ "$COMMIT_MSG" == *"force_ci"* ]] || [[ "$COMMIT_MSG" == *"force_build"* ]] || [[ "$COMMIT_MSG" =~ v[0-9]+\.[0-9]+(\.[0-9]+)? ]]; then
               echo "trigger=true" >> "$GITHUB_OUTPUT"
               if [[ "$COMMIT_MSG" =~ (v[0-9]+\.[0-9]+(\.[0-9]+)?) ]]; then
                 echo "version=${BASH_REMATCH[1]}" >> "$GITHUB_OUTPUT"
