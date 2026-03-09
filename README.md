@@ -7,7 +7,7 @@ For itch.io, select HTML5 as your export target. Export it to a folder, rename "
 
 ## Credits
 Soundtrack is from Open Game Art
-
+ 
 ## AI usage
 AI was used for debugging and otherwise menial labour. 
 Usage:
@@ -15,4 +15,4 @@ Usage:
 - shop_ui.gd: Shop items
 No game assets were made with AI. Programmer art all the way 
  
-Made for Campfire 2025.
+Made for Campfire 2026 and Ember 2026.
