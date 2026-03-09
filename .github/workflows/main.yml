@@ -9,6 +9,7 @@ env:
   PROJECT_PATH: .
   itchio_project: cane1712/downunder
   itchio_channel: windows
+  BUTLER_API_KEY: ${{secrets.BUTLER_API_KEY}}
 
 #fuck you
 permissions:
