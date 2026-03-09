@@ -10,6 +10,11 @@ env:
   itchio_project: cane1712/downunder
   itchio_channel: windows
 
+#fuck you
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   export-windows:
     name: Windows Export
