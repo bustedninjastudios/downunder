@@ -4,7 +4,7 @@ on: push
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
 env:
-  GODOT_VERSION: 4.6
+  GODOT_VERSION: 4.6.1
   EXPORT_NAME: downunder
   PROJECT_PATH: .
   itchio_project: cane1712/down-under
