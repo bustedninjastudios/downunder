@@ -103,9 +103,9 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/web # The folder the action should deploy.
-      - name: Set Version
-        run: |
-          echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+      - name: Extract version
+        shell: bash
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
       - name: Upload ${{ matrix.preset }} to itch.io project
         uses: robpc/itchio-upload-action@v1
         with:
