@@ -162,7 +162,7 @@ jobs:
           fi
       - name: Install rsync 
         run: |
-          apt-get update && apt-get install -y rsync
+          sudo apt-get update && apt-get install -y rsync
 
       - name: Upload windows to itch.io
         uses: robpc/itchio-upload-action@v1
