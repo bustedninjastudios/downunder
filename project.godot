@@ -39,7 +39,7 @@ project/assembly_name="New Game Project"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_mcp/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 

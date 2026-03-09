@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Vector2.ZERO
 	
 	# Mouse input
-	if is_holding:
+	if is_holding and not PlayerState.is_in_shop:
 		var to_mouse := get_global_mouse_position() - global_position
 		if to_mouse.length() > 8:
 			direction = to_mouse.normalized()
@@ -119,7 +119,7 @@ func try_drill() -> void:
 					if terrain_set == 0:
 						if terrain == 0:
 							ore_type = "sand"
-							required_power = 1
+							required_power = 0
 						elif terrain == 1:
 							ore_type = "soft_rock"
 							required_power = 2

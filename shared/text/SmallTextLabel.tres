@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://fp0tl5l46uja"]
+
+[ext_resource type="FontFile" uid="uid://dyyd4k70e5kq0" path="res://fonts/TerminusTTF-4.49.3.ttf" id="1_ifoq3"]
+
+[resource]
+font = ExtResource("1_ifoq3")
+font_size = 24

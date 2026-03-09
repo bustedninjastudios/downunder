@@ -8,6 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://cwhnm213mmejw" path="res://sprites/icons/Drill4.png" id="5_se4pl"]
 [ext_resource type="Texture2D" uid="uid://d0uuwnphubovi" path="res://sprites/icons/seabomb.png" id="7_riyc1"]
 [ext_resource type="Texture2D" uid="uid://cpmu1mhub78dr" path="res://sprites/icons/radar.png" id="8_30c1b"]
+[ext_resource type="FontFile" uid="uid://dyyd4k70e5kq0" path="res://fonts/TerminusTTF-4.49.3.ttf" id="9_fbehl"]
+[ext_resource type="LabelSettings" uid="uid://fp0tl5l46uja" path="res://shared/text/SmallTextLabel.tres" id="10_1pfkb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vip3o"]
+font = ExtResource("9_fbehl")
+font_size = 24
+font_color = Color(0.78, 0.50699997, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_amby3"]
+font = ExtResource("9_fbehl")
+font_size = 24
+font_color = Color(1, 0.9666667, 0, 1)
 
 [node name="ShopUi" type="Control" unique_id=1170269849]
 z_index = 100
@@ -15,6 +27,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sawmr")
@@ -146,3 +162,44 @@ offset_right = 240.0
 offset_bottom = 277.0
 disabled = true
 text = "coming soon..."
+
+[node name="Inv" type="Control" parent="Body" unique_id=293545998]
+anchors_preset = 0
+offset_left = 378.0
+offset_top = 32.0
+offset_right = 618.0
+offset_bottom = 160.0
+
+[node name="Inv" type="Label" parent="Body/Inv" unique_id=1048049973]
+layout_mode = 0
+offset_right = 278.0
+offset_bottom = 38.0
+text = "inventory:"
+label_settings = ExtResource("1_avfhx")
+
+[node name="Copper" type="Label" parent="Body/Inv" unique_id=1024519630]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 40.0
+offset_right = 310.0
+offset_bottom = 72.0
+text = "0 copper"
+label_settings = SubResource("LabelSettings_vip3o")
+
+[node name="Iron" type="Label" parent="Body/Inv" unique_id=844811711]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 310.0
+offset_bottom = 96.0
+text = "0 iron"
+label_settings = ExtResource("10_1pfkb")
+
+[node name="Gold" type="Label" parent="Body/Inv" unique_id=733722322]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 88.0
+offset_right = 310.0
+offset_bottom = 120.0
+text = "0 gold"
+label_settings = SubResource("LabelSettings_amby3")

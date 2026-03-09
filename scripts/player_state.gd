@@ -1,15 +1,16 @@
 extends Node
 
-var drill_power: int = 1
+var drill_power: int = 0
 var bombs: int = 3
 var radars: int = 3
 var money: int = 0
-var inventory: Dictionary = {}
+var inventory: Dictionary[String, int] = {}
 var mined_tiles: Dictionary = {}
 var is_mining = false
+var is_in_shop = false
 
-var item_prices: Dictionary = {
-	"sand": 0,
+var item_prices: Dictionary[String, int] = {
+	"sand": 1,
 	"soft_rock": 0,
 	"hard_rock": 0,
 	"ultra_hard_rock": 10,
@@ -42,7 +43,15 @@ func add_item(item_name: String, amount: int) -> void:
 		inventory[item_name] += amount
 	else:
 		inventory[item_name] = amount
-
+		
+func get_ore(ore: String) -> int:
+	var x = 0
+	if inventory.has("soft_"+ore):
+		x += inventory["soft_"+ore]
+	if inventory.has("hard_"+ore):
+		x += inventory["hard_"+ore]
+	return x
+	
 func add_mined_tile(scene_name: String, tile_pos: Vector2i) -> void:
 	if not mined_tiles.has(scene_name):
 		mined_tiles[scene_name] = []

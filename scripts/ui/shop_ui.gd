@@ -38,6 +38,10 @@ func _update_ui() -> void:
 					button.disabled = PlayerState.money < item["price"]
 			else:
 				button.disabled = PlayerState.money < item["price"]
+	$Body/Inv/Copper.text = str(PlayerState.get_ore("copper")) + " copper"
+	$Body/Inv/Iron.text = str(PlayerState.get_ore("iron")) + " iron"
+	$Body/Inv/Gold.text = str(PlayerState.get_ore("gold")) + " gold"
+	
 
 func button_handler(button: Button):
 	var item_id = button.name
@@ -56,7 +60,9 @@ func _on_quick_sell_pressed():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		visible = true
+		PlayerState.is_in_shop = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		visible = false
+		PlayerState.is_in_shop = false
