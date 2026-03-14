@@ -1,3 +1,6 @@
+# DEVELOPMENT MOVED 
+We use a self hosted [Gitlab instance](https://git.cane1712.dev/bns/downunder) now.
+
 # Down Under
 
 A short 2D Motherload-inspired game.
